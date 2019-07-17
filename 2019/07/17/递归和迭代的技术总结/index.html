@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="技术总结,学习心得,C++,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="递归与迭代的技术总结递归Recursion 自己调用自己 大事化小，小事化了，逐级返回。 复杂问题—&amp;gt;简单问题—&amp;gt;简单问题的解—&amp;gt;复杂问题的解。 要有结束条件，也就是所谓的递归基，即最简单问题的解。 从未知到已知，最终求得未知的值。    迭代Iteration A不停地调用B，直到条件结束。 每次update value 从已知推向未知。  引例Fibonacci(n)会有大量">
+<meta name="keywords" content="技术总结,学习心得,C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="递归和迭代的技术总结">
+<meta property="og:url" content="http://yoursite.com/2019/07/17/递归和迭代的技术总结/index.html">
+<meta property="og:site_name" content="iskyo0ps Inc.">
+<meta property="og:description" content="递归与迭代的技术总结递归Recursion 自己调用自己 大事化小，小事化了，逐级返回。 复杂问题—&amp;gt;简单问题—&amp;gt;简单问题的解—&amp;gt;复杂问题的解。 要有结束条件，也就是所谓的递归基，即最简单问题的解。 从未知到已知，最终求得未知的值。    迭代Iteration A不停地调用B，直到条件结束。 每次update value 从已知推向未知。  引例Fibonacci(n)会有大量">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-17T15:36:45.518Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="递归和迭代的技术总结">
+<meta name="twitter:description" content="递归与迭代的技术总结递归Recursion 自己调用自己 大事化小，小事化了，逐级返回。 复杂问题—&amp;gt;简单问题—&amp;gt;简单问题的解—&amp;gt;复杂问题的解。 要有结束条件，也就是所谓的递归基，即最简单问题的解。 从未知到已知，最终求得未知的值。    迭代Iteration A不停地调用B，直到条件结束。 每次update value 从已知推向未知。  引例Fibonacci(n)会有大量">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/17/递归和迭代的技术总结/">
+
+
+
+
+
+  <title>递归和迭代的技术总结 | iskyo0ps Inc.</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iskyo0ps Inc.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">make something people want</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/递归和迭代的技术总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Siethe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iskyo0ps Inc.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">递归和迭代的技术总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-17T23:21:32+08:00">
+                2019-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="递归与迭代的技术总结"><a href="#递归与迭代的技术总结" class="headerlink" title="递归与迭代的技术总结"></a>递归与迭代的技术总结</h1><h2 id="递归Recursion"><a href="#递归Recursion" class="headerlink" title="递归Recursion"></a>递归Recursion</h2><ul>
+<li>自己调用自己</li>
+<li>大事化小，小事化了，逐级返回。</li>
+<li>复杂问题—&gt;简单问题—&gt;简单问题的解—&gt;复杂问题的解。</li>
+<li>要有结束条件，也就是所谓的递归基，即最简单问题的解。</li>
+<li>从未知到已知，最终求得未知的值。  </li>
+</ul>
+<h2 id="迭代Iteration"><a href="#迭代Iteration" class="headerlink" title="迭代Iteration"></a>迭代Iteration</h2><ul>
+<li>A不停地调用B，直到条件结束。</li>
+<li>每次update value</li>
+<li>从已知推向未知。</li>
+</ul>
+<h2 id="引例"><a href="#引例" class="headerlink" title="引例"></a>引例</h2><p>Fibonacci(n)会有大量重复计算，f(5)=f(4)+f(3),f(4)=f(3)+f(2)……其中f(3)重复。</p>
+<h3 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h3><p>而动态规划是为了解决重复计算的问题，从递归基开始往上算，以小见大。</p>
+<h3 id="他人见解1"><a href="#他人见解1" class="headerlink" title="他人见解1"></a>他人见解1</h3><blockquote>
+<p><strong>dynamic programming</strong> is a method for solving a complex problem by breaking it down into a collection of simpler subproblems, <strong>solving each of those subproblems just once, and storing their solutions.</strong></p>
+</blockquote>
+<p><em>Ref: <a href="https://en.wikipedia.org/wiki/Dynamic_programming" target="_blank" rel="noopener">Dynamic programming</a></em></p>
+<p>也就是说，没有后面半句，只有前面半句，根本不能算是动态规划，只能算是分治法。<strong>储存重叠子问题的解，并不只是一个“花费空间来节省时间的技巧”，而就是动态规划的定义和核心之一</strong>。</p>
+<h3 id="他人见解2"><a href="#他人见解2" class="headerlink" title="他人见解2"></a>他人见解2</h3><blockquote>
+<p>… the essence of dynamic programming: Multistage problems may be solved by analyzing a sequence of simpler inductively defined single-stage problems.</p>
+</blockquote>
+<p><em>Ref：Puterman, Martin L.Markov decision processes: discrete stochastic dynamic programming. John Wiley &amp; Sons, 2014.</em></p>
+<p>文艺的说，动态规划是寻找一种对问题的观察角度，让问题能够以递推（或者说分治）的方式去解决。寻找看问题的角度，才是动态规划中最耀眼的宝石！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技术总结/" rel="tag"># 技术总结</a>
+          
+            <a href="/tags/学习心得/" rel="tag"># 学习心得</a>
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/13/Principles/" rel="next" title="Principles">
+                <i class="fa fa-chevron-left"></i> Principles
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Siethe</p>
+              <p class="site-description motion-element" itemprop="description">单枪匹马也是一公司</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#递归与迭代的技术总结"><span class="nav-number">1.</span> <span class="nav-text">递归与迭代的技术总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归Recursion"><span class="nav-number">1.1.</span> <span class="nav-text">递归Recursion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代Iteration"><span class="nav-number">1.2.</span> <span class="nav-text">迭代Iteration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引例"><span class="nav-number">1.3.</span> <span class="nav-text">引例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人理解"><span class="nav-number">1.3.1.</span> <span class="nav-text">个人理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#他人见解1"><span class="nav-number">1.3.2.</span> <span class="nav-text">他人见解1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#他人见解2"><span class="nav-number">1.3.3.</span> <span class="nav-text">他人见解2</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Siethe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

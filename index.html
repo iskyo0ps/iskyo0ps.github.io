@@ -232,6 +232,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/递归和迭代的技术总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Siethe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iskyo0ps Inc.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/17/递归和迭代的技术总结/" itemprop="url">递归和迭代的技术总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-17T23:21:32+08:00">
+                2019-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="递归与迭代的技术总结"><a href="#递归与迭代的技术总结" class="headerlink" title="递归与迭代的技术总结"></a>递归与迭代的技术总结</h1><h2 id="递归Recursion"><a href="#递归Recursion" class="headerlink" title="递归Recursion"></a>递归Recursion</h2><ul>
+<li>自己调用自己</li>
+<li>大事化小，小事化了，逐级返回。</li>
+<li>复杂问题—&gt;简单问题—&gt;简单问题的解—&gt;复杂问题的解。</li>
+<li>要有结束条件，也就是所谓的递归基，即最简单问题的解。</li>
+<li>从未知到已知，最终求得未知的值。  </li>
+</ul>
+<h2 id="迭代Iteration"><a href="#迭代Iteration" class="headerlink" title="迭代Iteration"></a>迭代Iteration</h2><ul>
+<li>A不停地调用B，直到条件结束。</li>
+<li>每次update value</li>
+<li>从已知推向未知。</li>
+</ul>
+<h2 id="引例"><a href="#引例" class="headerlink" title="引例"></a>引例</h2><p>Fibonacci(n)会有大量重复计算，f(5)=f(4)+f(3),f(4)=f(3)+f(2)……其中f(3)重复。</p>
+<h3 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h3><p>而动态规划是为了解决重复计算的问题，从递归基开始往上算，以小见大。</p>
+<h3 id="他人见解1"><a href="#他人见解1" class="headerlink" title="他人见解1"></a>他人见解1</h3><blockquote>
+<p><strong>dynamic programming</strong> is a method for solving a complex problem by breaking it down into a collection of simpler subproblems, <strong>solving each of those subproblems just once, and storing their solutions.</strong></p>
+</blockquote>
+<p><em>Ref: <a href="https://en.wikipedia.org/wiki/Dynamic_programming" target="_blank" rel="noopener">Dynamic programming</a></em></p>
+<p>也就是说，没有后面半句，只有前面半句，根本不能算是动态规划，只能算是分治法。<strong>储存重叠子问题的解，并不只是一个“花费空间来节省时间的技巧”，而就是动态规划的定义和核心之一</strong>。</p>
+<h3 id="他人见解2"><a href="#他人见解2" class="headerlink" title="他人见解2"></a>他人见解2</h3><blockquote>
+<p>… the essence of dynamic programming: Multistage problems may be solved by analyzing a sequence of simpler inductively defined single-stage problems.</p>
+</blockquote>
+<p><em>Ref：Puterman, Martin L.Markov decision processes: discrete stochastic dynamic programming. John Wiley &amp; Sons, 2014.</em></p>
+<p>文艺的说，动态规划是寻找一种对问题的观察角度，让问题能够以递推（或者说分治）的方式去解决。寻找看问题的角度，才是动态规划中最耀眼的宝石！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/Principles/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -442,7 +585,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -450,6 +593,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
             
 
           </nav>
